@@ -1,0 +1,51 @@
+# -*- conf -*-
+OASISFormat:  0.4
+OCamlVersion: >= 4.02.3
+Name:         graphql
+Version:      0.0.1
+Maintainers:  Edgar Aroutiounian
+Homepage:     http://hyegar.com
+Synopsis:     Graphql implementation in OCaml
+Authors:      Edgar Aroutiounian <edgar.factorial@gmail.com>
+License:      BSD-3-clause
+Plugins:      META (0.4), DevFiles (0.4)
+AlphaFeatures: ocamlbuild_more_args
+
+# PreBuildCommand:
+#   sh prepare.sh
+
+Description:
+  OCaml implementation of Graphql
+
+Executable graphql_server
+  Path: src/server
+  BuildTools:ocamlbuild
+  install: true
+  MainIs: main.ml
+  CompiledObject: native
+  # Might use brotli, need to fix it.
+  BuildDepends: cmdliner, graphql
+
+Library graphql
+  Path: src/lib
+  BuildTools:ocamlbuild
+  install: true
+  CClib: -L/usr/local/lib -lgraphqlparser -lstdc++
+  CCOpt: -g -Wall -std=c++11 -x c++ -I/usr/local/include 
+  NativeOpt: -cc clang++ 
+  ByteOpt: -cc clang++ 
+  Modules: Graphql
+  # InternalModules: 
+  CompiledObject: native
+  CSources: graphql_stubs.c
+  BuildDepends: lwt.unix, lwt.ppx
+
+Document api
+  Title: API reference for graphql
+  Type: ocamlbuild (0.4)
+  Authors: Edgar Aroutiounian
+  BuildTools: ocamldoc, ocamlbuild
+  Format: HTML
+  Index: index.html
+  XOCamlbuildPath: .
+  XOCamlbuildLibraries: graphql
