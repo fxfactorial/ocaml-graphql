@@ -1,2 +1,2 @@
 B _build/src/lib
-PKG lwt.unix lwt.ppx graphql
+PKG lwt.unix lwt.ppx graphql yojson

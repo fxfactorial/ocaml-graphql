@@ -38,7 +38,7 @@ Library graphql
   # InternalModules: 
   CompiledObject: native
   CSources: graphql_stubs.c
-  BuildDepends: lwt.unix, lwt.ppx
+  BuildDepends: lwt.unix, lwt.ppx, bigstring, yojson, postgresql
 
 Document api
   Title: API reference for graphql

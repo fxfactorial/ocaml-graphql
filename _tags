@@ -35,3 +35,5 @@ true: annot, bin_annot
 "src/graphql_stubs.c": package(lwt.ppx)
 "src/graphql_stubs.c": package(lwt.unix)
 # OASIS_STOP
+# crucial that this comes after oasis_stop
+true: thread
